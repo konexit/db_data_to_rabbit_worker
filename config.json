@@ -1,0 +1,42 @@
+[
+  {
+    "author": "Denys Kulpa",
+    "jsonName": "ordersStatuses",
+    "status": true,
+	"logFile": true,
+    "database": {
+      "url": "jdbc:postgresql://10.10.5.76:5432/konex24_06_01_23 _rabbit",
+      "user": "postgres",
+      "password": "123qwe",
+      "sqlQuery": "SELECT distinct on (order_id) order_id_etabletka, status_code, etabletka_order_statuses.id, delivery_status, payment_status FROM etabletka_order_statuses JOIN etabletka_orders ON konex24_order_id = order_id WHERE status_code > 0 ORDER BY order_id, created"
+    },
+    "rabbit": {
+      "host": "110.10.1.14",
+      "userName": "administrator",
+      "password": "ghbdtn1234",
+      "exchange": "eTabletka",
+      "routingKey": "ordersStatuses",
+      "timeoutSeconds": 10
+    }
+  },
+  {
+    "author": "json-author",
+    "jsonName": "goods",
+    "status": true,
+    "logFile": true,
+    "database": {
+      "url": "jdbc:postgresql://130.10.5.76:5432/konex24_06_01_23 _rabbit",
+      "user": "postgres",
+      "password": "123qwe",
+      "sqlQuery": "SELECT * FROM public.goods limit 100"
+    },
+    "rabbit": {
+      "host": "10.10.1.14",
+      "userName": "administrator",
+      "password": "ghbdtn1234",
+      "exchange": "test",
+      "routingKey": "tq2",
+      "timeoutSeconds": 10
+    }
+  }
+]
